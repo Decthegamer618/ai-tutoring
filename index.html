@@ -116,6 +116,30 @@ header h1 {
     cursor: pointer;
     color: white;
 }
+
+/* Fullscreen Button */
+#fullscreenBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #00f7ff;
+    color: black;
+    cursor: pointer;
+    z-index: 1010;
+    text-shadow:
+        0 0 5px #00f7ff,
+        0 0 10px #00f7ff;
+    transition: 0.3s;
+}
+
+#fullscreenBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00f7ff;
+}
 </style>
 
 </head>
@@ -223,6 +247,7 @@ Use it responsibly and for your own good before playing any game.
 <div id="gameModal" class="modal">
     <span class="close" onclick="closeGame()">&times;</span>
     <iframe id="gameFrame"></iframe>
+    <button id="fullscreenBtn" onclick="goFullScreen()">Full Screen</button>
 </div>
 
 <script>
@@ -247,8 +272,20 @@ function closeGame() {
     document.getElementById("gameModal").style.display = "none";
     document.getElementById("gameFrame").src = "";
 }
+
+function goFullScreen() {
+    const iframe = document.getElementById("gameFrame");
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+    } else if (iframe.mozRequestFullScreen) { // Firefox
+        iframe.mozRequestFullScreen();
+    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) { // IE/Edge
+        iframe.msRequestFullscreen();
+    }
+}
 </script>
 
 </body>
 </html>
-
