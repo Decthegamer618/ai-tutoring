@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Games</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f1a;
+    color: white;
+}
+
+/* Neon Title */
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #00f7ff;
+    text-shadow:
+        0 0 5px #00f7ff,
+        0 0 10px #00f7ff,
+        0 0 20px #00f7ff,
+        0 0 40px #0088ff;
+}
+
+/* Search */
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 60%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+/* Grid */
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.game-card {
+    background: #1c1c2e;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00f7ff;
+}
+
+.game-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.game-card h3 {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Section Title */
+.section-title {
+    text-align:center; 
+    margin-top:40px; 
+    color:#00f7ff;
+    font-size: 2em;
+}
+
+/* Warning Footer */
+.warning-footer {
+    background: #ff0033;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+.modal iframe {
+    width: 90%;
+    height: 85%;
+    margin: 3% auto;
+    display: block;
+    border: none;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>NOVA GAMES</h1>
+</header>
+
+<div class="search-container">
+    <input type="text" id="search" placeholder="Search games..." onkeyup="searchGames()">
+</div>
+
+<!-- Games Section -->
+<div class="games" id="gameList">
+
+    <div class="game-card" onclick="openGame('https://unblocked-games.s3.amazonaws.com/games/2024/gm/basketball-stars/index.html')">
+        <img src="https://m.media-amazon.com/images/I/81BL1Hx2KuL.png">
+        <h3>Basketball Stars</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2023/unity3/drift-rider/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/428/responsive/drift-rider-xs.jpg">
+        <h3>Drift Rider</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2026/more/duckcraft/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/745/responsive/duckcraft-unblocked-xs.webp">
+        <h3>DuckCraft</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2023/unity2/real-flight-simulator/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/335/responsive/512-xs.jpg">
+        <h3>Real Flight Simulator</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://unblocked-games.s3.amazonaws.com/games/vehicles-simulator/unblocked.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/23/responsive/vehiclessimulator-xs-xs.jpg">
+        <h3>Vehicles Simulator</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2022/unity/edys-car-simulator/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/238/responsive/512-2-xs.jpg">
+        <h3>Edys Car Simulator</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2021/3/love-tester/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/152/responsive/test-lg.jpg">
+        <h3>Love Tester</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://eggshock.me/')">
+        <img src="https://imgs.crazygames.com/shellshockersio_16x9/20260203211252/shellshockersio_16x9-cover?metadata=none&quality=85&width=196&dpr=1">
+        <h3>Shellshockers</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2025/html/flappy-bird/index.html')">
+        <img src="https://m.media-amazon.com/images/I/21ZzpgClpiL.png">
+        <h3>Flappybird</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2023/unity3/idle-dev-startup/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/427/responsive/idle-dev-startup-xs.jpg">
+        <h3>Idle Dev Startup</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://unblocked-games.s3.amazonaws.com/games/2024/gm/moto-x3m/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/448/responsive/Moto-X3M-Original-512x512-xs.jpg">
+        <h3>Moto X3M</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2024/more2/five-nights-at-freddys/fnaf/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/594/responsive/fnaf-512-xs.webp">
+        <h3>FNAF</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2023/q2/geometry-dash-freezenova/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/415/responsive/geometry-dash-freezenova-lg.jpg">
+        <h3>Geometry Dash</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://freedomgamingzone.github.io/five-nights-at-epsteins-s2/')">
+        <img src="https://topgames.gg/data/image/game/five-nights-at-epsteins.png">
+        <h3>Five Nights at Epsteins Island</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://html-classic.itch.zone/html/11420273/index.html')">
+        <img src="https://topgames.gg/data/image/game/fnad.png">
+        <h3>Five Nights at Diddy's</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://d23tskfudfp1j.cloudfront.net/games/2026/unity/run-3/index.html')">
+        <img src="https://unblocked-games.s3.amazonaws.com/media/posts/740/responsive/run-3-freezenova-xs.webp">
+        <h3>Run 3</h3>
+    </div>
+
+</div>
+
+<!-- Apps Section -->
+<h2 class="section-title">APPS</h2>
+
+<div class="games">
+
+    <div class="game-card" onclick="openGame('https://www.google.com')">
+        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+        <h3>Google</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://www.youtube.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
+        <h3>YouTube</h3>
+    </div>
+
+    <div class="game-card" onclick="openGame('https://mail.google.com')">
+        <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico">
+        <h3>Gmail</h3>
+    </div>
+
+</div>
+
+<!-- Warning Footer -->
+<div class="warning-footer">
+⚠️ By using this website, you acknowledge that you are putting yourself at risk.
+Use it responsibly and for your own good before playing any game.
+</div>
+
+<!-- Modal -->
+<div id="gameModal" class="modal">
+    <span class="close" onclick="closeGame()">&times;</span>
+    <iframe id="gameFrame"></iframe>
+</div>
+
+<script>
+function searchGames() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let games = document.getElementsByClassName("game-card");
+
+    for (let i = 0; i < games.length; i++) {
+        let title = games[i].getElementsByTagName("h3")[0];
+        let textValue = title.textContent || title.innerText;
+        games[i].style.display =
+            textValue.toLowerCase().includes(input) ? "" : "none";
+    }
+}
+
+function openGame(url) {
+    document.getElementById("gameFrame").src = url;
+    document.getElementById("gameModal").style.display = "block";
+}
+
+function closeGame() {
+    document.getElementById("gameModal").style.display = "none";
+    document.getElementById("gameFrame").src = "";
+}
+</script>
+
+</body>
+</html>
